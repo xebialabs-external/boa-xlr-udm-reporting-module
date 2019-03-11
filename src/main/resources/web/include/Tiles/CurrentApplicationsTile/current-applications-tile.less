@@ -1,0 +1,51 @@
+@import "../../../../../../../../../core/xlr-ui/app/styles/xlrelease/variables";
+
+@link: #337ab7;
+@hovered-link: #23527c;
+
+.current-applications {
+
+  .report-tile .card-content {
+    font-size: 12px;
+    font-weight: normal;
+  }
+
+  .loaded.card-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: ~"calc(100% - 50px)";
+  }
+
+  .card-title, .card-footer {
+    background: @white;
+    z-index: 1;
+  }
+
+  .report-tile {
+    width: ~"calc(100% + 10px)";
+  }
+
+  .text-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: absolute;
+    left: 35px;
+    right: 0;
+  }
+
+  .row {
+    border-bottom: 1px solid @lightgray;
+    padding-bottom: 10px;
+    margin-right: 10px;
+
+    &.last-visible-item {
+      border: none;
+    }
+
+    &.not-fully-visible-item, &.not-visible-item {
+      display: none;
+      visibility: hidden;
+    }
+  }
+}
