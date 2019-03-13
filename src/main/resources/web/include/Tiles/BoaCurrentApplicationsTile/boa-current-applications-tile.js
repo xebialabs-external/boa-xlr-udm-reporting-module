@@ -9,9 +9,9 @@
 //    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 //-->
-import template from './current-applications-tile.html';
+import template from './boa-current-applications-tile.html';
 
-class CurrentApplicationsTileController {
+class BoaCurrentApplicationsTileController {
     static $inject = ['ReportLoader', 'Report', 'ReportTileService', '$uibModal', 'DeploymentTileService'];
 
     constructor(ReportLoader, Report, ReportTileService, $uibModal, DeploymentTileService) {
@@ -51,17 +51,17 @@ class CurrentApplicationsTileController {
                     tile: this.tile
                 }
             },
-            windowClass: 'deployment-dialog',
+            windowClass: 'deployment-dialog'
         });
     }
 
 }
 
-export const currentApplicationsTile = {
+export const boaCurrentApplicationsTile = {
     bindings: {
         tile: '<',
         parent: '<'
     },
-    controller: CurrentApplicationsTileController,
+    controller: BoaCurrentApplicationsTileController,
     template
 };
