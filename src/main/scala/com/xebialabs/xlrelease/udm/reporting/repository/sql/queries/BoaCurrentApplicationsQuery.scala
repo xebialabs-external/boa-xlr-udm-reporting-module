@@ -7,6 +7,7 @@ import com.xebialabs.xlrelease.environments.repository.sql.persistence.Environme
 import com.xebialabs.xlrelease.plugins.dashboard.domain.Tile
 import com.xebialabs.xlrelease.reports.filters.ReportFilter
 import com.xebialabs.xlrelease.udm.reporting.DeploymentStatus
+import com.xebialabs.xlrelease.udm.reporting.repository.sql.DeploymentsSqlBuilder
 import com.xebialabs.xlrelease.udm.reporting.repository.sql.persistence.DeploymentPersistence
 import com.xebialabs.xlrelease.udm.reporting.repository.sql.persistence.DeploymentSchema.DEPLOYMENTS
 import org.springframework.beans.factory.annotation.{Autowired, Qualifier}
@@ -15,9 +16,9 @@ import org.springframework.stereotype.Component
 import scala.collection.JavaConverters._
 
 @Component
-class CurrentApplicationsQuery @Autowired()(val environmentPersistence: EnvironmentPersistence,
-                                            val deploymentPersistence: DeploymentPersistence,
-                                            @Qualifier("reportingSqlDialect") implicit val dialect: Dialect) extends DeploymentQuery {
+class BoaCurrentApplicationsQuery @Autowired()(val environmentPersistence: EnvironmentPersistence,
+                                               val deploymentPersistence: DeploymentPersistence,
+                                               @Qualifier("reportingSqlDialect") implicit val dialect: Dialect) extends DeploymentQuery {
   // TODO: what to show under User in the UI
   // TODO: is this subselect required?
   private val TILE_QUERY =
@@ -27,7 +28,8 @@ class CurrentApplicationsQuery @Autowired()(val environmentPersistence: Environm
      |deployments.${DEPLOYMENTS.VERSION},
      |deployments.${DEPLOYMENTS.TASK_OWNER},
      |deployments.${DEPLOYMENTS.TASK_TEAM},
-     |deployments.${DEPLOYMENTS.END_DATE}
+     |deployments.${DEPLOYMENTS.END_DATE},
+     |deployments.${DEPLOYMENTS.RELEASE_ID}
      |FROM (
      |  SELECT depl1.*
      |  FROM ${DEPLOYMENTS.TABLE} depl1

@@ -15,17 +15,20 @@
              ng-if="$ctrl.report.data">
             <div class="row" ng-repeat="application in $ctrl.report.data">
                 <div class="current-applications-entry">
-                    <div class="col-sm-6 text-left">
+                    <div class="col-sm-5 text-left">
                         <i class="xlr-application-icon"></i>
                         <span class="text-ellipsis" title="{{::application.applicationName}}">{{::application.applicationName}}</span>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-2">
                         <i class="xlr-package-icon"></i>
                         <span class="text-ellipsis" title="{{::application.version}}">{{::application.version}}</span>
                     </div>
-                    <div class="col-sm-6">
-                        <i class="xlr-package-icon"></i>
+                    <div class="col-sm-3">
+                        <img class="xlr-react-icon smaller" src="static/@project.version@/include/assets/environment.svg">
                         <span class="text-ellipsis" title="{{::application.environmentName}}">{{::application.environmentName}}</span>
+                    </div>
+                    <div class="col-sm-2">
+                        <span class="text-ellipsis" title="{{::application.releaseTitle}}">{{::application.releaseTitle}}</span>
                     </div>
                 </div>
             </div>

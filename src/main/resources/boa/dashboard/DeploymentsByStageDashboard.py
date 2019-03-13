@@ -34,7 +34,7 @@ def create_tiles(stage, column):
 
     currentApplications = (TileBuilder
         .newTile()
-        .withType('deployment.CurrentApplicationsTile')
+        .withType('boa.CurrentApplicationsTile')
         .withWidth(1)
         .withHeight(1)
         .withCol(column)

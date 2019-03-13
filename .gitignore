@@ -1,0 +1,15 @@
+.gradle/
+build/
+out/
+target/
+bin/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.log
+.DS_Store
+node_modules
+.env
+xl-conf
+.gradletasknamecache

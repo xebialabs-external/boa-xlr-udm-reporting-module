@@ -1,13 +1,38 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        ["public", "thirdparty", "releases"].each { r ->
+            maven {
+                credentials {
+                    username nexusUserName
+                    password nexusPassword
+                }
+                url "${nexusBaseUrl}/repositories/${r}"
+            }
+        }
+    }
+
+    dependencies {
+        classpath "com.xebialabs.gradle.plugins.xlrelease:gradle-xl-release-plugin-plugin:0.1.2"
+        classpath "com.moowork.gradle:gradle-node-plugin:1.1.1"
+    }
+}
+
 plugins {
-   // id "com.github.hierynomus.license" version "0.14.0"
+    // id "com.github.hierynomus.license" version "0.14.0"
     id "com.xebialabs.xl.docker" version "1.1.0"
 }
 
 apply plugin: 'java'
+apply plugin: 'scala'
 apply plugin: 'idea'
-apply plugin: 'eclipse'
-apply plugin: 'maven'
 
+apply plugin: 'com.xebialabs.xl-release.plugin'
+apply plugin: 'xebialabs.root.opinions'
+apply plugin: 'xebialabs.opinions'
+apply plugin: 'com.moowork.node'
+
+group 'com.xebialabs.xlrelease.plugins'
 version = '0.1.0'
 def xlreleaseHome = "$System.env.XLRELEASE_HOME"
 
@@ -21,4 +46,29 @@ xlDocker {
 
 dependencies {
     compile fileTree(dir: "$xlreleaseHome/lib", include: ['*.jar'])
+    compile 'org.scala-lang:scala-library:2.12.8'
 }
+
+node {
+    version = '8.9.0'
+    yarnVersion = '0.22.0'
+    npmVersion = '3.10.9'
+    download = true
+    nodeModulesDir = file("${rootProject.projectDir}")
+}
+
+sourceSets {
+    // js are processed by webpack
+    main {
+        resources {
+            exclude '**/*.js'
+        }
+    }
+}
+
+task yarnRunBuild(type: YarnTask) {
+    args = ['run', 'build']
+}
+
+yarnRunBuild.dependsOn yarn_install
+processResources.dependsOn yarnRunBuild
