@@ -43,17 +43,6 @@ def create_tiles(stage, column):
         .withProperty('filters', filters)
         .build())
 
-    activity = (TileBuilder
-        .newTile()
-        .withType('deployment.DeploymentsActivityTile')
-        .withWidth(1)
-        .withHeight(2)
-        .withCol(column)
-        .withRow(2)
-        .withTitle('Activity')
-        .withProperty('filters', filters)
-        .build())
-
     deployments = (TileBuilder
         .newTile()
         .withType('deployment.TotalDeploymentsTile')
@@ -87,7 +76,7 @@ def create_tiles(stage, column):
         .withProperty('filters', filters)
         .build())
 
-    return [label, currentApplications, activity, deployments, deploymentsDistribution, deploymentSuccessRate]
+    return [label, currentApplications, deployments, deploymentsDistribution, deploymentSuccessRate]
 
 dashboard.setColumns(0)
 
