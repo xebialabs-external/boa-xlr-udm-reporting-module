@@ -21,6 +21,7 @@ for deployment in deployments:
         varName = "${" +deployment.getEnvironmentName()+"-certStatus}"
         deployment.setReleaseTitle(release.getVariableValues().getOrDefault(varName, ""))
         # Deployer ID
-        deployment.setTaskOwner(release.getVariableValues().getOrDefault("${deployer_id_to_trigger_nonprod_tower_jobtemplate}", ""))
+        deployerIDVarName = "${" +deployment.getEnvironmentName()+"-deployerId}"
+        deployment.setTaskOwner(release.getVariableValues().getOrDefault(deployerIDVarName, ""))
 
 data = deployments
