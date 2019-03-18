@@ -39,7 +39,7 @@ def create_tiles(stage, column):
         .withHeight(1)
         .withCol(column)
         .withRow(1)
-        .withTitle('Current applications')
+        .withTitle('BOA Current applications')
         .withProperty('filters', filters)
         .build())
 

@@ -15,7 +15,7 @@
              ng-if="$ctrl.report.data">
             <div class="row" ng-repeat="application in $ctrl.report.data">
                 <div class="current-applications-entry">
-                    <div class="col-sm-5 text-left">
+                    <div class="col-sm-3 text-left">
                         <i class="xlr-application-icon"></i>
                         <span class="text-ellipsis" title="{{::application.applicationName}}">{{::application.applicationName}}</span>
                     </div>
@@ -29,6 +29,9 @@
                     </div>
                     <div class="col-sm-2">
                         <span class="text-ellipsis" title="{{::application.releaseTitle}}">{{::application.releaseTitle}}</span>
+                    </div>
+                    <div class="col-sm-2">
+                        <span class="text-ellipsis" title="{{::application.applicationId}}">{{::application.applicationId}}</span>
                     </div>
                 </div>
             </div>

@@ -15,8 +15,12 @@ deployments = current_applications_query.execute(tile)
 
 for deployment in deployments:
     release_id = deployment.getReleaseId()
+    print deployment
     if release_id:
         release = release_service.findByIdIncludingArchived(release_id)
-        deployment.setReleaseTitle(release.getVariableValues().getOrDefault("${myVar}", ""))
+        varName = "${" +deployment.getEnvironmentName()+"-certStatus}"
+        deployment.setReleaseTitle(release.getVariableValues().getOrDefault(varName, ""))
+        # Deployer ID
+        deployment.setTaskOwner(release.getVariableValues().getOrDefault("${deployer_id_to_trigger_nonprod_tower_jobtemplate}", ""))
 
 data = deployments
