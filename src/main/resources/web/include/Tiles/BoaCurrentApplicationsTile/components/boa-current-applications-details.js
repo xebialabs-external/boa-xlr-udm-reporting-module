@@ -33,7 +33,7 @@ const template = `
             <div class="boa-current-applications-details-data" data-ng-if="!$ctrl.isLoading"
                 data-ng-repeat="(environmentName, value) in $ctrl.filterCurrentApplications($ctrl.currentApplications)">
                 <h5>
-                    <i class="xl-icon environment-icon" />
+                    <img class="xlr-react-icon smaller" src="static/@project.version@/include/assets/environment.svg">
                     <span>{{::environmentName}}</span>
                 </h5>
                 <table class="table table-curved">
@@ -50,15 +50,15 @@ const template = `
                     <tbody>
                         <tr ng-repeat="deployment in value">
                             <td>
-                                <i class="xl-icon application-icon"></i>
+                                <i class="xlr-application-icon"></i>
                                 <span class="mrm">{{::deployment.applicationName}}</span>
                             </td>
                             <td>
-                                <i class="xl-icon package-icon"></i>
+                                <i class="xlr-package-icon"></i>
                                 <span class="mrm">{{::deployment.version}}</span>
                             </td>
                             <td>
-                                <i class="xl-icon environment-icon" />
+                                <img class="xlr-react-icon smaller" src="static/@project.version@/include/assets/environment.svg">
                                 <span class="mrm">{{::deployment.environmentName}}</span>
                             </td>
                             <td>
