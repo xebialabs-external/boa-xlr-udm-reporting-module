@@ -42,7 +42,7 @@ class BoaCurrentApplicationsTileController {
     showDetails() {
         const dateFilter = this.ReportTileService.getDateFilter(this.tile);
         this.$uibModal.open({
-            component: 'currentApplicationsDetails',
+            component: 'boaCurrentApplicationsDetails',
             resolve: {
                 data: {
                     timeFrame: dateFilter.timeFrame,
