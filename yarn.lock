@@ -2572,11 +2572,7 @@ lodash.some@^4.2.2:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.some/-/lodash.some-4.6.0.tgz#1bb9f314ef6b8baded13b549169b2a945eb68e4d"
 
-lodash@4.11.1:
-  version "4.11.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.11.1.tgz#a32106eb8e2ec8e82c241611414773c9df15f8bc"
-
-lodash@^4.17.11, lodash@^4.17.4, lodash@^4.2.0:
+lodash@>=4.17.11, lodash@^4.17.11, lodash@^4.17.4, lodash@^4.2.0:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
@@ -2803,9 +2799,9 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
-moment@2.10.3:
-  version "2.10.3"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.10.3.tgz#0abb99f307f65218308c6935efe29c57b1a0a27f"
+moment@>=2.19.3:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
 
 move-concurrently@^1.0.1:
   version "1.0.1"
