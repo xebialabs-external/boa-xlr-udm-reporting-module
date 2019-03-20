@@ -33,7 +33,7 @@ apply plugin: 'xebialabs.opinions'
 apply plugin: 'com.moowork.node'
 
 group 'com.xebialabs.xlrelease.plugins'
-version = '0.3.0'
+version = '0.4.0'
 def xlreleaseHome = "$System.env.XLRELEASE_HOME"
 
 xlDocker {
