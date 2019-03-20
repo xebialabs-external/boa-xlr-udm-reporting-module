@@ -10,7 +10,7 @@ const template = `
                     to="$ctrl.resolve.data.dateTo">
             </xlr-tile-date-range-label>
         </h5>
-        <button type="button" class="close pull-right" ng-click="$ctrl.close()"><i class="xl-icon close-icon"/></button>
+        <button type="button" class="close pull-right" ng-click="$ctrl.close()"><i class="glyphicon glyphicon-remove"/></button>
         <div class="clearfix" />
     </div>
     <div class="modal-body boa-current-applications-details-body">
@@ -41,7 +41,7 @@ const template = `
                         <tr>
                             <th>Component</th>
                             <th>Build Number</th>
-                            <th>SPK-Release Environment</th>
+                            <th>SPK-Environment</th>
                             <th>Deployer ID</th>
                             <th>Certification Status</th>
                             <th>Date</th>
