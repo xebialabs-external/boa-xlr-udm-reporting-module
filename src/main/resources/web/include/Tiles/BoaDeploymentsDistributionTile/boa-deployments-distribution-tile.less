@@ -1,0 +1,16 @@
+@import "../BoaDeploymentsActivityTile/variables";
+
+
+.deployments-distribution-delimiter {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 72px;
+  background: @lightgray;
+
+  // Method of allowing calculated values for length units
+  // should be supported by browsers that XLR supports.
+  // See https://caniuse.com/#search=calc
+  left: ~"calc( 50% - 35px )";
+  top: ~"calc( 50% + 3px )";
+}

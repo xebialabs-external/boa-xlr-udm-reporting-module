@@ -13,6 +13,22 @@
            xmlns="http://www.xebialabs.com/deployit/synthetic"
            xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
 
+    <type type="boa.DeploymentsActivityTile" label="BOA Deployment activity" extends="xlrelease.DeploymentTile" description="Display deployment activity.">
+        <property name="uri" hidden="true" default="include/Tiles/BoaDeploymentsActivityTile/boa-deployments-activity-tile-view.html"/>
+        <property name="configurationUri" hidden="true" default="include/Tiles/BoaDeploymentsActivityTile/boa-deployments-activity-tile-config.html"/>
+        <property name="title" default="Deployment activity"/>
+        <property name="height" kind="integer" default="2"/>
+        <property name="deploymentStatus" category="input" required="false" kind="enum" enum-class="com.xebialabs.xlrelease.udm.reporting.DeploymentStatus"/>
+    </type>
+
+    <type type="boa.DeploymentsDistributionTile" label="BOA Deployment distribution" extends="xlrelease.DeploymentTile"
+          description="Display the distribution of successful and failed deployments.">
+        <property name="uri" hidden="true" default="include/Tiles/BoaDeploymentsDistributionTile/boa-deployments-distribution-tile-view.html"/>
+        <property name="configurationUri" hidden="true" default="include/Tiles/BoaDeploymentsDistributionTile/boa-deployments-distribution-tile-config.html"/>
+        <property name="height" kind="integer" default="2"/>
+        <property name="title" default="Deployments distribution"/>
+    </type>
+
     <type type="boa.CurrentApplicationsTile" label="BOA current applications"
           description="Display the latest deployed applications." extends="xlrelease.DeploymentTile">
         <property name="uri" hidden="true" default="include/Tiles/BoaCurrentApplicationsTile/boa-current-applications-tile-view.html"/>

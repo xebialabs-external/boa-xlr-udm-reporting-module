@@ -43,6 +43,17 @@ def create_tiles(stage, column):
         .withProperty('filters', filters)
         .build())
 
+    activity = (TileBuilder
+                .newTile()
+                .withType('boa.DeploymentsActivityTile')
+                .withWidth(1)
+                .withHeight(2)
+                .withCol(column)
+                .withRow(2)
+                .withTitle('BOA Activity')
+                .withProperty('filters', filters)
+                .build())
+
     deployments = (TileBuilder
         .newTile()
         .withType('deployment.TotalDeploymentsTile')
@@ -56,12 +67,12 @@ def create_tiles(stage, column):
 
     deploymentsDistribution = (TileBuilder
         .newTile()
-        .withType('deployment.DeploymentsDistributionTile')
+        .withType('boa.DeploymentsDistributionTile')
         .withWidth(1)
         .withHeight(1)
         .withCol(column)
         .withRow(5)
-        .withTitle('Deployments')
+        .withTitle('BOA Deployments')
         .withProperty('filters', filters)
         .build())
 
@@ -76,7 +87,7 @@ def create_tiles(stage, column):
         .withProperty('filters', filters)
         .build())
 
-    return [label, currentApplications, deployments, deploymentsDistribution, deploymentSuccessRate]
+    return [label, currentApplications,activity, deployments, deploymentsDistribution, deploymentSuccessRate]
 
 dashboard.setColumns(0)
 

@@ -15,7 +15,6 @@ deployments = current_applications_query.execute(tile)
 
 for deployment in deployments:
     release_id = deployment.getReleaseId()
-    print deployment
     if release_id:
         release = release_service.findByIdIncludingArchived(release_id)
         varName = "${" +deployment.getEnvironmentName()+"-certStatus}"
