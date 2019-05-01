@@ -68,11 +68,7 @@ const template = `
                                             <deployment-state state-value="deployment.state"></deployment-state>
                                         </span>
                                         <span class="task-in-release-column mll">
-                                            <a href="{{$ctrl.getTaskUrl(deployment.releaseId, deployment.taskId)}}" ng-click="$ctrl.close()"
-                                                   class="task-name link"
-                                                   title="{{deployment.taskTitle}}">
-                                                    {{::deployment.taskTitle}}
-                                            </a>
+
                                             <a href="{{$ctrl.getReleaseUrl(deployment.releaseId)}}" ng-click="$ctrl.close()" class="release-name link"
                                                title="{{deployment.releaseTitle}}">
                                                 {{::deployment.releaseTitle}}
