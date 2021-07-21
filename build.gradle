@@ -46,7 +46,7 @@ xlDocker {
 
 dependencies {
     compile fileTree(dir: "$xlreleaseHome/lib", include: ['*.jar'])
-    compile 'org.scala-lang:scala-library:2.12.8'
+    compile 'org.scala-lang:scala-library:2.13.4'
 }
 
 node {
