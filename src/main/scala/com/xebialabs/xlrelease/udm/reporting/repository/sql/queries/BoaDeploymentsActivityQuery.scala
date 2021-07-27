@@ -18,7 +18,7 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Component
 
 import scala.beans.BeanProperty
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 @Component
 class BoaDeploymentsActivityQuery @Autowired()(val environmentPersistence: EnvironmentPersistence,
@@ -44,14 +44,14 @@ class BoaDeploymentsActivityQuery @Autowired()(val environmentPersistence: Envir
 
   override def execute(tile: Tile, additionalParameters: JMap[String, Any]): AnyRef = {
     val filters: java.util.List[ReportFilter] = tile.getProperty("filters")
-    val environmentIds = getEnvironmentIds(filters.asScala)
+    val environmentIds = getEnvironmentIds(filters.asScala.toSeq)
 
     if (environmentIds.isEmpty) {
       Seq.empty.asJava
     } else {
       val builder = new DeploymentsSqlBuilder()
         .select(TILE_QUERY)
-        .withFilters(filters.asScala)
+        .withFilters(filters.asScala.toSeq)
         .withEnvironmentIds(environmentIds.get)
         .limitAndOffset(additionalParameters.getOrDefault("pageSize", 100).asInstanceOf[Int], additionalParameters.getOrDefault("offset", 0L).asInstanceOf[Int])
         .orderBy(s"history.${DEPLOYMENT_HISTORY.CHANGE_DATE} DESC")

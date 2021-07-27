@@ -13,7 +13,7 @@ import com.xebialabs.xlrelease.udm.reporting.repository.sql.persistence.Deployme
 import org.springframework.beans.factory.annotation.{Autowired, Qualifier}
 import org.springframework.stereotype.Component
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 @Component
 class BoaCurrentApplicationsQuery @Autowired()(val environmentPersistence: EnvironmentPersistence,
@@ -45,14 +45,14 @@ class BoaCurrentApplicationsQuery @Autowired()(val environmentPersistence: Envir
 
   override def execute(tile: Tile, additionalParameters: JMap[String, Any]): AnyRef = {
     val filters: java.util.List[ReportFilter] = tile.getProperty("filters")
-    val environmentIds = getEnvironmentIds(filters.asScala)
+    val environmentIds = getEnvironmentIds(filters.asScala.toSeq)
 
     if (environmentIds.isEmpty) {
       Seq.empty.asJava
     } else {
       val query = new DeploymentsSqlBuilder()
         .select(TILE_QUERY)
-        .withFilters(filters.asScala)
+        .withFilters(filters.asScala.toSeq)
         .withEnvironmentIds(environmentIds.get)
         .orderBy(s"${DEPLOYMENTS.END_DATE} DESC")
         .build()

@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.{Autowired, Qualifier}
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Component
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 @Component
 class BoaTotalDeploymentsQuery @Autowired()(val environmentPersistence: EnvironmentPersistence,
@@ -29,14 +29,14 @@ class BoaTotalDeploymentsQuery @Autowired()(val environmentPersistence: Environm
 
   override def execute(tile: Tile, additionalParameters: JMap[String, Any]): AnyRef = {
     val filters: java.util.List[ReportFilter] = tile.getProperty("filters")
-    val environmentIds = getEnvironmentIds(filters.asScala)
+    val environmentIds = getEnvironmentIds(filters.asScala.toSeq)
 
     if (environmentIds.isEmpty) {
       DeploymentCount(0, 0)
     } else {
       val (sql, params) = new DeploymentsSqlBuilder()
         .select(TILE_QUERY)
-        .withFilters(filters.asScala)
+        .withFilters(filters.asScala.toSeq)
         .withEnvironmentIds(environmentIds.get)
         .build()
       jdbcTemplate.queryForObject(sql, params.toArray, (rs: ResultSet, _: Int) => DeploymentCount(rs.getInt("completed"), rs.getInt("failed")))

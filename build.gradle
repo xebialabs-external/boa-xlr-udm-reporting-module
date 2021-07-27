@@ -13,8 +13,9 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.xebialabs.gradle.plugins.xlrelease:gradle-xl-release-plugin-plugin:0.1.2"
-        classpath "com.moowork.gradle:gradle-node-plugin:1.1.1"
+        classpath "com.xebialabs.gradle.plugins.xlrelease:gradle-xl-release-plugin-plugin:0.2.6"
+        classpath "com.xebialabs.gradle.plugins:gradle-xl-plugins-plugin:1.3.18"
+        classpath "com.github.node-gradle:gradle-node-plugin:2.2.4"
     }
 }
 
@@ -30,11 +31,23 @@ apply plugin: 'idea'
 apply plugin: 'com.xebialabs.xl-release.plugin'
 apply plugin: 'xebialabs.root.opinions'
 apply plugin: 'xebialabs.opinions'
-apply plugin: 'com.moowork.node'
+apply plugin: 'com.xebialabs.dependency'
+apply plugin: 'com.github.node-gradle.node'
 
 group 'com.xebialabs.xlrelease.plugins'
-version = '0.4.0'
-def xlreleaseHome = "$System.env.XLRELEASE_HOME"
+version = '0.5.0'
+
+def distName = "xl-release"
+def xlrBase = "xl-release-server"
+
+configurations {
+    xlrDist
+}
+
+xlReleasePlugin {
+    useSourcesDirectly = false
+    xlReleaseHome = "${buildDir}/${xlrBase}/${distName}-${xlReleaseVersion}-server"
+}
 
 xlDocker {
     compileImage = 'xebialabs/xlr_dev_compile'
@@ -44,15 +57,20 @@ xlDocker {
     runPortMapping = '15516:5516'
 }
 
+dependencyManagement {
+    importConf "com.xebialabs.xl-platform:xl-reference:${xlPlatformVersion}"
+    importConf rootProject.file('gradle/dependencies.conf')
+}
+
 dependencies {
-    compile fileTree(dir: "$xlreleaseHome/lib", include: ['*.jar'])
-    compile 'org.scala-lang:scala-library:2.13.4'
+    compile fileTree(dir: "${xlReleasePlugin.xlReleaseHome}/lib", includes: ['*.jar'])
+    xlrDist "com.xebialabs.xlrelease:${distName}-base:${xlReleaseVersion}:server@zip"
+    implementation "org.scala-lang:scala-library"
 }
 
 node {
-    version = '8.9.0'
-    yarnVersion = '0.22.0'
-    npmVersion = '3.10.9'
+    version = '12.22.1'
+    yarnVersion = '1.22.5'
     download = true
     nodeModulesDir = file("${rootProject.projectDir}")
 }
@@ -72,3 +90,17 @@ task yarnRunBuild(type: YarnTask) {
 
 yarnRunBuild.dependsOn yarn_install
 processResources.dependsOn yarnRunBuild
+
+task unzipDist(type: Copy) {
+    from zipTree(file("${buildDir}/${xlrBase}/${distName}-base-${xlReleaseVersion}-server.zip"))
+    into file("${buildDir}/${xlrBase}")
+}
+
+task copyXlrDist(type: Copy) {
+    from configurations.xlrDist
+    into file("${buildDir}/${xlrBase}")
+}
+
+unzipDist.dependsOn copyXlrDist
+compileJava.dependsOn unzipDist
+compileScala.dependsOn unzipDist
