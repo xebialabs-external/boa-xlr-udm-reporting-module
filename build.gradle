@@ -35,7 +35,7 @@ apply plugin: 'com.xebialabs.dependency'
 apply plugin: 'com.github.node-gradle.node'
 
 group 'com.xebialabs.xlrelease.plugins'
-version = '0.4.0'
+version = '0.5.0'
 
 def distName = "xl-release"
 def xlrBase = "xl-release-server"
