@@ -1,6 +1,6 @@
 global applicationContext, tile
 
-from com.xebialabs.xlrelease.udm.reporting import DeploymentStatus
+from com.xebialabs.xlrelease.domain.udm.reporting import DeploymentStatus
 
 total_deployments_query = applicationContext.getBean('boaTotalDeploymentsQuery')
 result = total_deployments_query.execute(tile)
