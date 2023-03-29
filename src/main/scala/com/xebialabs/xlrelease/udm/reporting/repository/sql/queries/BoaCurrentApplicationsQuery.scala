@@ -6,7 +6,7 @@ import com.xebialabs.xlrelease.db.sql.SqlBuilder.Dialect
 import com.xebialabs.xlrelease.environments.repository.sql.persistence.EnvironmentPersistence
 import com.xebialabs.xlrelease.plugins.dashboard.domain.Tile
 import com.xebialabs.xlrelease.reports.filters.ReportFilter
-import com.xebialabs.xlrelease.udm.reporting.DeploymentStatus
+import com.xebialabs.xlrelease.domain.udm.reporting.DeploymentStatus
 import com.xebialabs.xlrelease.udm.reporting.repository.sql.DeploymentsSqlBuilder
 import com.xebialabs.xlrelease.udm.reporting.repository.sql.persistence.DeploymentPersistence
 import com.xebialabs.xlrelease.udm.reporting.repository.sql.persistence.DeploymentSchema.DEPLOYMENTS
