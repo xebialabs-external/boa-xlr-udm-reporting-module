@@ -3,7 +3,7 @@ global dashboard, environmentStageApi
 from com.xebialabs.xlrelease.plugins.dashboard.builder import TileBuilder
 
 from com.xebialabs.xlrelease.api.v1.filter import EnvironmentStageFilters
-from com.xebialabs.xlrelease.domain.udm.reporting.filters import EnvironmentStageFilter
+from com.xebialabs.xlrelease.udm.reporting.filters import EnvironmentStageFilter
 
 from com.xebialabs.xlrelease.repository import Ids
 
