@@ -27,13 +27,13 @@ const template = `
                      show-all-on-click="true"
                      open-on-click="true"
                 ></div>
-            </div>      
+            </div>
         </div>
         <div class="boa-current-applications-details-data-wrapper">
             <div class="boa-current-applications-details-data" data-ng-if="!$ctrl.isLoading"
                 data-ng-repeat="(environmentName, value) in $ctrl.filterCurrentApplications($ctrl.currentApplications)">
                 <h5>
-                    <img class="xlr-react-icon smaller" src="static/@project.version@/include/assets/environment.svg">
+                    <i class="xl-icon environment-icon"></i>
                     <span>{{::environmentName}}</span>
                 </h5>
                 <table class="table table-curved">
@@ -58,7 +58,7 @@ const template = `
                                 <span class="mrm">{{::deployment.version}}</span>
                             </td>
                             <td>
-                                <img class="xlr-react-icon smaller" src="static/@project.version@/include/assets/environment.svg">
+                                <i class="xl-icon environment-icon"></i>
                                 <span class="mrm">{{::deployment.environmentName}}</span>
                             </td>
                             <td>
@@ -67,20 +67,20 @@ const template = `
                             <td>
                                 {{::deployment.releaseTitle | date: "medium"}}
                             </td>
-                            <td>{{::deployment.endDate | date: "medium"}}</td>                    
+                            <td>{{::deployment.endDate | date: "medium"}}</td>
                         </tr>
                     </tbody>
-                </table>       
+                </table>
             </div>
         </div>
         <div ng-show="$ctrl.isLoading" class="spinner text-center">
             <img src="static/@project.version@/styles/img/big-ajax-loader.gif" alt="Loading..."/>
-        </div>  
+        </div>
     </div>
 `;
 
 class BoaCurrentApplicationsDetailsController {
-    SELECT_ALL_OPTION = {title: 'All', searchFilter: ''};
+    SELECT_ALL_OPTION = { title: 'All', searchFilter: '' };
 
     static $inject = ['DeploymentTileService', '$q'];
 
@@ -89,7 +89,7 @@ class BoaCurrentApplicationsDetailsController {
         this.$q = $q;
         this.selectedEnvironment = undefined;
         this.environmentFilterHandler = {
-            addCandidates: (metadata, options) => this.envAddCandidates(metadata, options)
+            addCandidates: (metadata, options) => this.envAddCandidates(metadata, options),
         };
     }
 
@@ -100,10 +100,9 @@ class BoaCurrentApplicationsDetailsController {
 
     fetchData(page, offset) {
         this.isLoading = true;
-        this.DeploymentTileService
-            .fetchTileData(this.resolve.data.tile.id)
+        this.DeploymentTileService.fetchTileData(this.resolve.data.tile.id)
             .then((resp) => {
-                this.currentApplications = _.chain(resp.data.data).groupBy("environmentName").value();
+                this.currentApplications = _.groupBy(resp.data.data, 'environmentName');
             })
             .finally(() => {
                 this.isLoading = false;
@@ -111,7 +110,10 @@ class BoaCurrentApplicationsDetailsController {
     }
 
     envAddCandidates(metadata, options) {
-        const environments = _.keys(this.currentApplications).map(title => ({title, searchFilter: title}));
+        const environments = _(this.currentApplications)
+            .keys()
+            .map((title) => ({ title, searchFilter: title }))
+            .value();
         return this.$q.resolve([this.SELECT_ALL_OPTION].concat(environments));
     }
 
@@ -119,7 +121,7 @@ class BoaCurrentApplicationsDetailsController {
         if (angular.isUndefined(this.selectedEnvironment)) {
             this.selectedEnvironment = this.SELECT_ALL_OPTION;
         } else if (this.selectedEnvironment.title !== 'All') {
-            return {[this.selectedEnvironment.searchFilter]: currentApplications[this.selectedEnvironment.searchFilter]};
+            return { [this.selectedEnvironment.searchFilter]: currentApplications[this.selectedEnvironment.searchFilter] };
         }
         return currentApplications;
     }
@@ -131,5 +133,5 @@ export const boaCurrentApplicationsDetailsComponent = {
         close: '&',
     },
     controller: BoaCurrentApplicationsDetailsController,
-    template
+    template,
 };

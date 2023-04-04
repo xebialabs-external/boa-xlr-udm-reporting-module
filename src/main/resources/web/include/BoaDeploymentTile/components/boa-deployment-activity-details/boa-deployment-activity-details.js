@@ -14,10 +14,10 @@ const template = `
         <button type="button" class="close pull-right" ng-click="$ctrl.close()"><i class="glyphicon glyphicon-remove"/></button>
         <div class="clearfix" />
     </div>
-    <div class="modal-body deployments-activity-details-body">        
+    <div class="modal-body deployments-activity-details-body">
         <div>
             <div class="btn-group btn-group-toggle mlm" data-toggle="buttons">
-                <label class="btn" 
+                <label class="btn"
                     ng-class="{active: $ctrl.selectedState == '${DEPLOYMENT_STATE_ALL}'}"
                     ng-click="$ctrl.selectState('${DEPLOYMENT_STATE_ALL}')">
                     <input type="radio" name="selectedState" autocomplete="off" checked> All
@@ -48,7 +48,7 @@ const template = `
                             <th class="col-sm-2">Date</th>
                         </tr>
                     </thead>
-                </table>                
+                </table>
                 <div class="table-body-container scrollable">
                     <xlr-infinite-scroll-wrapper
                          on-show-more="$ctrl.showMore()"
@@ -75,7 +75,7 @@ const template = `
                                             </a>
                                         </span>
                                     </td>
-                                    <td class="col-sm-2">                                    
+                                    <td class="col-sm-2">
                                         <span class="mlm mrm" title="{{::deployment.applicationName}}">
                                             <i class="xlr-application-icon"></i> {{::deployment.applicationName}}
                                         </span>
@@ -85,7 +85,7 @@ const template = `
                                             <i class="xlr-package-icon"></i> {{::deployment.version}}
                                         </span>
                                     </td>
-                                    <td class="col-sm-2">                                    
+                                    <td class="col-sm-2">
                                         <span class="mrm mlm" title="{{::deployment.environmentName}}">
                                           <img class="xlr-react-icon smaller" src="static/@project.version@/include/assets/environment.svg">
                                             {{::deployment.environmentName}}
@@ -103,7 +103,7 @@ const template = `
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 `;
 
 const ITEMS_PER_PAGE = 8;
@@ -186,5 +186,5 @@ export const boaDeploymentActivityDetailsComponent = {
         close: '&',
     },
     controller: BoaDeploymentActivityDetailsController,
-    template
+    template,
 };

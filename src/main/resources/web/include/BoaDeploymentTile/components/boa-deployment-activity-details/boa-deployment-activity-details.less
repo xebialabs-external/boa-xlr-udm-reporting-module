@@ -1,16 +1,13 @@
 @import "./variables";
 
 .deployments-activity-details-title {
-
   .xlr-tile-date-range-label {
     text-transform: lowercase;
-    margin-left: -4px;
 
     .calendar-icon {
       display: none;
     }
   }
-
 }
 
 .modal-content .modal-body.deployments-activity-details-body {
@@ -101,17 +98,18 @@
     }
 
     .task-in-release {
-      padding-top: 0;
-      a {
-        display: block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+        padding-top: 0;
+
+        a {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 
-    tr:nth-child(even) {
-      background-color: @background;
+    tbody tr:nth-child(odd) {
+        background-color: @silver;
     }
   }
 
@@ -123,7 +121,25 @@
   }
 
   .table-scrollable {
-    margin: 0;
-    padding: 0;
+      margin: 0;
+      padding: 0;
+
+      tbody tr td {
+          .table-deployment-data {
+              height: 32px;
+              .flex-inline();
+              .flex-align();
+              .mlm();
+
+              i.xl-icon {
+                  .mrm();
+              }
+
+              deployment-owner,
+              deployment-date {
+                  display: inherit;
+              }
+          }
+      }
   }
 }

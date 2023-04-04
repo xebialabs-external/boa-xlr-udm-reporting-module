@@ -4,7 +4,6 @@ import {searchLabels} from "../common/label-service";
 import {searchApp} from "../common/application-service";
 
 export class BoaDeploymentTileService {
-
     static $inject = ['Backend', 'Ids'];
 
     constructor(Backend, Ids) {
@@ -15,21 +14,21 @@ export class BoaDeploymentTileService {
     }
 
     fetchTileData(tileId, tileProperties) {
-        return this.Backend.get(`tiles/${tileId}/data`, {...tileProperties, hideAlert: true});
+        return this.Backend.get(`tiles/${tileId}/data`, { ...tileProperties, hideAlert: true });
     }
 
     getAllEnvironments(forceLoad) {
         if (forceLoad || !this._cachedEnvironmentsPromise) {
-            this._cachedEnvironmentsPromise = searchEnvironments("")
-                .then(response =>
+            this._cachedEnvironmentsPromise = searchEnvironments('')
+                .then((response) =>
                     response
-                        ? response.map(env => ({
-                            id: this.Ids.getName(env.id),
-                            title: env.title
-                        }))
-                        : []
+                        ? response.map((env) => ({
+                              id: this.Ids.getName(env.id),
+                              title: env.title,
+                          }))
+                        : [],
                 )
-                .catch(error => {
+                .catch((error) => {
                     /* eslint-disable no-console, angular/log */
                     console.warn(error);
                 });
@@ -39,16 +38,16 @@ export class BoaDeploymentTileService {
 
     getAllEnvironmentStages(forceLoad) {
         if (forceLoad || !this._cachedEnvironmentStagesPromise) {
-            this._cachedEnvironmentStagesPromise = searchStages("")
-                .then(response =>
+            this._cachedEnvironmentStagesPromise = searchStages('')
+                .then((response) =>
                     response
-                        ? response.map(env => ({
-                            id: this.Ids.getName(env.id),
-                            title: env.title
-                        }))
-                        : []
+                        ? response.map((env) => ({
+                              id: this.Ids.getName(env.id),
+                              title: env.title,
+                          }))
+                        : [],
                 )
-                .catch(error => {
+                .catch((error) => {
                     /* eslint-disable no-console, angular/log */
                     console.warn(error);
                 });
@@ -58,16 +57,16 @@ export class BoaDeploymentTileService {
 
     getAllEnvironmentLabels(forceLoad) {
         if (forceLoad || !this._cachedEnvironmentLabelsPromise) {
-            this._cachedEnvironmentLabelsPromise = searchLabels("")
-                .then(response =>
+            this._cachedEnvironmentLabelsPromise = searchLabels('')
+                .then((response) =>
                     response
-                        ? response.map(env => ({
-                            id: this.Ids.getName(env.id),
-                            title: env.title
-                        }))
-                        : []
+                        ? response.map((env) => ({
+                              id: this.Ids.getName(env.id),
+                              title: env.title,
+                          }))
+                        : [],
                 )
-                .catch(error => {
+                .catch((error) => {
                     /* eslint-disable no-console, angular/log */
                     console.warn(error);
                 });
@@ -82,9 +81,9 @@ export class BoaDeploymentTileService {
                     response
                         ? response.map(env => ({
                             id: this.Ids.getName(env.id),
-                            title: env.title
+                            title: env.title,
                         }))
-                        : []
+                        : [],
                 )
                 .catch(error => {
                     /* eslint-disable no-console, angular/log */
