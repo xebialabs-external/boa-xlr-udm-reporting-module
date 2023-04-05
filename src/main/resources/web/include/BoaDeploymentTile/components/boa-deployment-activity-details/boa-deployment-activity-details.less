@@ -1,4 +1,6 @@
 @import "./variables";
+@import "./spacing-helper"
+@import "./common-functions";
 
 .deployments-activity-details-title {
   .xlr-tile-date-range-label {
@@ -124,22 +126,22 @@
       margin: 0;
       padding: 0;
 
-      tbody tr td {
-          .table-deployment-data {
-              height: 32px;
-              .flex-inline();
-              .flex-align();
-              .mlm();
+      // tbody tr td {
+      //     .table-deployment-data {
+      //         height: 32px;
+      //         .flex-inline();
+      //         .flex-align();
+      //         .mlm();
 
-              i.xl-icon {
-                  .mrm();
-              }
+      //         i.xl-icon {
+      //             .mrm();
+      //         }
 
-              deployment-owner,
-              deployment-date {
-                  display: inherit;
-              }
-          }
-      }
+      //         deployment-owner,
+      //         deployment-date {
+      //             display: inherit;
+      //         }
+      //     }
+      // }
   }
 }

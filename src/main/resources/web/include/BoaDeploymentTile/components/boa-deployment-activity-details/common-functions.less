@@ -1,0 +1,188 @@
+@import 'variables.less';
+
+.roundCorner(@rad: 4px) {
+    -webkit-border-radius: @rad;
+    -moz-border-radius: @rad;
+    border-radius: @rad;
+}
+
+.ellipsis() {
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.header(@borderColor: @blue) {
+    .flatHeader(@borderColor);
+}
+
+.headerWithoutBorder() {
+    .flatHeader(@antracite);
+    border-radius: 4px;
+}
+
+.flatHeader(@borderColor: @blue) {
+    background-color: @antracite;
+    color: @white;
+    padding-top: 3px;
+    padding-bottom: 9px;
+    padding-left: 20px;
+    border-top: 5px solid @borderColor;
+
+    [class*='span'] {
+        min-height: 20px;
+    }
+}
+
+.lineBox(@borderColor: @lightgray, @padding: 0px) {
+    .roundCorner(4px);
+    border: 1px solid @borderColor;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: @padding;
+    &:hover {
+        background-color: @silver;
+
+        .flag-line {
+            background-color: #f3f5f6; //Cant use variable due to mixin variable name
+        }
+    }
+}
+
+@pageHeaderBorder: 1px;
+
+.pageHeader(@minHeight: @pageHeaderHeight) {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    background-color: @white;
+    padding: @pageHeaderTopPadding @pageHeaderRightPadding @pageHeaderBottomPadding @pageHeaderLeftPadding;
+    width: inherit; // to fix in S-75808
+    .flex();
+    .flex-align();
+    .flex-wrap();
+}
+
+.fieldset-header() {
+    border-top: 1px solid @lightgray;
+
+    legend {
+        font-size: @large;
+        font-weight: bold;
+        width: auto;
+        padding-left: 20px;
+        border-bottom: none;
+        margin-bottom: 0;
+        line-height: 20px;
+    }
+
+    .expander {
+        position: relative;
+        left: -24px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &.xl-icon {
+            top: 4px;
+        }
+    }
+
+    .group-title {
+        position: relative;
+        left: -22px;
+    }
+}
+
+.striped() {
+    background-size: 60px;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiPgogICAgPGRlZnM+CiAgICAgICAgPHBhdGggaWQ9ImEiIGQ9Ik0wIDBoMTAwdjEwMEgweiIvPgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8bWFzayBpZD0iYiIgZmlsbD0iI2ZmZiI+CiAgICAgICAgICAgIDx1c2UgeGxpbms6aHJlZj0iI2EiLz4KICAgICAgICA8L21hc2s+CiAgICAgICAgPGcgZmlsbD0iI2Q1ZDVkNSIgbWFzaz0idXJsKCNiKSI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0tNTYuOTUgNTEuOUw1NC4wMyAxNjIuODhsLjcxNS0uNzEzLTExMC45OC0xMTAuOTgtLjcxNS43MTR6bTUtNUw1OS4wMzIgMTU3Ljg4bC43MTQtLjcxNC0xMTAuOTgtMTEwLjk4LS43MTQuNzE0em01LjAwMS01bDExMC45OCAxMTAuOTguNzE1LS43MTUtMTEwLjk4LTExMC45OC0uNzE1LjcxNHptNS01LjAwMWwxMTAuOTgxIDExMC45OC43MTUtLjcxNC0xMTAuOTgtMTEwLjk4LS43MTUuNzE0em01LjAwMi01LjAwMWwxMTAuOTggMTEwLjk4LjcxNC0uNzE0LTExMC45OC0xMTAuOTgtLjcxNC43MTR6bTUtNWwxMTAuOTggMTEwLjk4LjcxNS0uNzE1LTExMC45OC0xMTAuOTgtLjcxNS43MTR6bTUtNS4wMDFsMTEwLjk4MSAxMTAuOTguNzE1LS43MTQtMTEwLjk4LTExMC45OC0uNzE1LjcxNHptNS4wMDItNS4wMDFsMTEwLjk4IDExMC45OC43MTQtLjcxNC0xMTAuOTgtMTEwLjk4LS43MTQuNzE0em01LTVsMTEwLjk4IDExMC45OC43MTUtLjcxNS0xMTAuOTgtMTEwLjk4LS43MTUuNzE0em01LTUuMDAxbDExMC45ODEgMTEwLjk4LjcxNS0uNzE0TC0xMS4yMyA2LjE4bC0uNzE1LjcxNHptNS4wMDEtNS4wMDFsMTEwLjk4IDExMC45OC43MTUtLjcxNEwtNi4yMjkgMS4xOGwtLjcxNS43MTR6bTUuMDAxLTVsMTEwLjk4IDExMC45OC43MTUtLjcxNUwtMS4yMjgtMy44MmwtLjcxNS43MTR6bTUtNS4wMDFsMTEwLjk4MSAxMTAuOTguNzE1LS43MTRMMy43NzMtOC44MjFsLS43MTUuNzE0em01LjAwMS01bDExMC45OCAxMTAuOTguNzE1LS43MTVMOC43NzMtMTMuODIybC0uNzE1LjcxNHptNS4wMDEtNS4wMDJsMTEwLjk4IDExMC45OC43MTUtLjcxNC0xMTAuOTgtMTEwLjk4LS43MTUuNzE0em01LTVMMTI5LjA0IDg3Ljg3bC43MTUtLjcxNC0xMTAuOTgtMTEwLjk4LS43MTUuNzE0em01LjAwMS01TDEzNC4wNCA4Mi44N2wuNzE1LS43MTUtMTEwLjk4LTExMC45OC0uNzE1LjcxNHptNS4wMDEtNS4wMDJsMTEwLjk4IDExMC45OC43MTUtLjcxMy0xMTAuOTgtMTEwLjk4LS43MTUuNzEzem01LTVsMTEwLjk4MSAxMTAuOTguNzE0LS43MTQtMTEwLjk4LTExMC45OC0uNzE0LjcxNHptNS4wMDEtNWwxMTAuOTggMTEwLjk4LjcxNS0uNzE1LTExMC45OC0xMTAuOTgtLjcxNS43MTR6bTUuMDAxLTUuMDAxbDExMC45OCAxMTAuOTguNzE1LS43MTQtMTEwLjk4LTExMC45OC0uNzE1LjcxNHoiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTptdWx0aXBseSIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==');
+}
+
+.flex(@value: initial) {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-grow: @value;
+}
+
+.flex-inline() {
+    display: -webkit-inline-flex;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+.flex-align(@value: center) {
+    -webkit-box-align: @value;
+    -moz-box-align: @value;
+    -ms-flex-align: @value;
+    -webkit-align-items: @value;
+    align-items: @value;
+}
+
+.flex-justify(@value: center) {
+    -webkit-justify-content: @value;
+    justify-content: @value;
+}
+
+.flex-wrap(@value: wrap) {
+    -webkit-flex-wrap: @value;
+    -moz-flex-wrap: @value;
+    -ms-flex-wrap: @value;
+    -o-flex-wrap: @value;
+    flex-wrap: @value;
+}
+
+.roundTopCorners(@rad: 8px) {
+    border-top-left-radius: @rad;
+    border-top-right-radius: @rad;
+}
+
+.containerShadow(@hOffset: 0, @vOffset: 10px, @blur: 10px, @spread: -10px, @color: @lightgray) {
+    -webkit-box-shadow: @hOffset @vOffset @blur @spread @color;
+    -moz-box-shadow: @hOffset @vOffset @blur @spread @color;
+    box-shadow: @hOffset @vOffset @blur @spread @color;
+}
+
+.scrollShadow() {
+    background: linear-gradient(180deg, white 0, rgba(0, 0, 0, 0)), linear-gradient(180deg, rgba(0, 0, 0, 0), white 99%) 0 100%,
+        linear-gradient(180deg, black, rgba(0, 0, 0, 0) 1px);
+    // disable scroll shadow for safari
+    @media not all and (min-resolution: 0.001dpcm) {
+        background: none;
+    }
+    background-attachment: local, local, scroll, scroll;
+}
+
+.spacing(@attribute, @multiplier: 1) when (isnumber(@multiplier)) {
+    @{attribute}: unit(@basePadding* @multiplier, px);
+}
+
+// prettier-ignore
+.spacing(@attribute, @multiplier) when (length(@multiplier) = 2) {
+    @{attribute}: unit(@basePadding*extract(@multiplier, 1), px) unit(@basePadding*extract(@multiplier, 2), px);
+}
+
+// prettier-ignore
+.spacing(@attribute, @multiplier) when (length(@multiplier) = 4) {
+    @{attribute}: unit(@basePadding*extract(@multiplier, 1), px) unit(@basePadding*extract(@multiplier, 2), px) unit(@basePadding*extract(@multiplier, 3), px) unit(@basePadding*extract(@multiplier, 4), px);
+}
+
+.markdownTable() {
+    th {
+        background: @background;
+    }
+    table,
+    th,
+    td {
+        border: 1px solid @background;
+        padding: 3px;
+    }
+}
