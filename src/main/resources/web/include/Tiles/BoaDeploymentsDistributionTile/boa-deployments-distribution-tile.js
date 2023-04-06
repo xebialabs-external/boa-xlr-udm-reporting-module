@@ -1,5 +1,5 @@
 import {DEPLOYMENT_STATE} from '../../BoaDeploymentTile/services/boa-deployment-tile-constants';
-import colors from '../../../../../../../../../core/xlr-ui/app/js/colors';
+import colors from '../../BoaDeploymentTile/common/colors';
 import './boa-deployments-distribution-tile.less';
 
 const template = `
