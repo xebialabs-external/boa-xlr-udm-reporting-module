@@ -7,7 +7,7 @@
     "url": "https://github.com/xebialabs/xlr-fortify-on-demand-plugin"
   },
   "scripts": {
-    "build": "webpack --colors"
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
