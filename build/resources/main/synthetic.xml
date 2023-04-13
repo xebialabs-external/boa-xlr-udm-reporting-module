@@ -18,7 +18,7 @@
         <property name="configurationUri" hidden="true" default="include/Tiles/BoaDeploymentsActivityTile/boa-deployments-activity-tile-config.html"/>
         <property name="title" default="Deployment activity"/>
         <property name="height" kind="integer" default="2"/>
-        <property name="deploymentStatus" category="input" required="false" kind="enum" enum-class="com.xebialabs.xlrelease.udm.reporting.DeploymentStatus"/>
+        <property name="deploymentStatus" category="input" required="false" kind="enum" enum-class="com.xebialabs.xlrelease.domain.udm.reporting.DeploymentStatus"/>
     </type>
 
     <type type="boa.DeploymentsDistributionTile" label="BOA Deployment distribution" extends="xlrelease.DeploymentTile"

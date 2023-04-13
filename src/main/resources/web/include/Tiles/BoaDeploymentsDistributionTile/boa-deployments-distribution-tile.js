@@ -1,7 +1,6 @@
 import {DEPLOYMENT_STATE} from '../../BoaDeploymentTile/services/boa-deployment-tile-constants';
-import colors from './colors';
+import colors from '../../BoaDeploymentTile/common/colors';
 import './boa-deployments-distribution-tile.less';
-
 
 const template = `
     <report-tile class=" deployments-distribution-tile" report="$ctrl.report" tile="$ctrl.tile" parent="$ctrl.parent">
@@ -17,7 +16,6 @@ const template = `
 `;
 
 class BoaDeploymentsDistributionTileController {
-
     static $inject = ['ReportLoader', 'Report', 'BoaDeploymentTileService', '$uibModal', 'ReportTileService'];
 
     constructor(ReportLoader, Report, BoaDeploymentTileService, $uibModal, ReportTileService) {
@@ -31,9 +29,7 @@ class BoaDeploymentsDistributionTileController {
 
     $onInit() {
         this.loader.startLoading();
-        this.BoaDeploymentTileService
-            .fetchTileData(this.tile.id)
-            .then(resp => {
+        this.BoaDeploymentTileService.fetchTileData(this.tile.id).then(resp => {
                 const data = resp.data.data;
                 const hasData = !!data;
                 this.loader.endLoading();
@@ -76,23 +72,26 @@ class BoaDeploymentsDistributionTileController {
 
         const successful = data.successful || 0;
         const failed = data.failed || 0;
-        this.data = [{
-            name: 'Successful',
-            icon: 'circle',
-            textStyle: {
-                color: colors.gray,
-                fontSize: 11,
+        this.data = [
+            {
+                name: 'Successful',
+                icon: 'circle',
+                textStyle: {
+                    color: colors.gray,
+                    fontSize: 11,
+                },
+                deploymentState: DEPLOYMENT_STATE.successful.value
             },
-            deploymentState: DEPLOYMENT_STATE.successful.value
-        }, {
-            name: 'Failed',
-            icon: 'circle',
-            textStyle: {
-                color: colors.gray,
-                fontSize: 11,
-            },
-            deploymentState: DEPLOYMENT_STATE.failed.value
-        }];
+            {
+                name: 'Failed',
+                icon: 'circle',
+                textStyle: {
+                    color: colors.gray,
+                    fontSize: 11,
+                },
+                deploymentState: DEPLOYMENT_STATE.failed.value
+            }
+        ];
 
         this.echartsOptions = {
             title: {
@@ -105,14 +104,14 @@ class BoaDeploymentsDistributionTileController {
                     color: colors.green,
                     fontSize: titleFontSize,
                     fontWeight: 600,
-                    fontFamily: 'OpenSans',
+                    fontFamily: "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif",
                 },
                 subtextStyle: {
                     color: colors.red,
                     fontSize: titleFontSize,
                     fontWeight: 600,
-                    fontFamily: 'OpenSans',
-                }
+                    fontFamily: "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+                },
             },
             color: [colors.green, colors.red],
             legend: {
@@ -120,12 +119,12 @@ class BoaDeploymentsDistributionTileController {
                 left: 'center',
                 bottom: legendBottom,
                 itemWidth: 10,
-                data: this.data
+                data: this.data,
             },
             label: {
                 normal: {
                     show: true,
-                }
+                },
             },
             series: {
                 type: 'pie',
@@ -134,26 +133,29 @@ class BoaDeploymentsDistributionTileController {
                 label: {
                     normal: {
                         show: false,
-                        position: 'center'
+                        position: 'center',
                     },
                     emphasis: {
                         show: false,
-                        textStyle: {fontSize: 16}
-                    }
+                        textStyle: { fontSize: 16 },
+                    },
                 },
                 labelLine: {
                     normal: {
-                        show: false
-                    }
+                        show: false,
+                    },
                 },
-                data: [{
-                    value: successful,
-                    name: 'Successful'
-                }, {
-                    value: failed,
-                    name: 'Failed'
-                }]
-            }
+                data: [
+                    {
+                        value: successful,
+                        name: 'Successful',
+                    },
+                    {
+                        value: failed,
+                        name: 'Failed',
+                    },
+                ],
+            },
         };
     }
 }
@@ -161,8 +163,8 @@ class BoaDeploymentsDistributionTileController {
 export const boaDeploymentsDistributionTileComponent = {
     bindings: {
         tile: '<',
-        parent: '<'
+        parent: '<',
     },
     controller: BoaDeploymentsDistributionTileController,
-    template
+    template,
 };

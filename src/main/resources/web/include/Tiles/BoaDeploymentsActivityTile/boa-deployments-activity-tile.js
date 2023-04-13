@@ -10,19 +10,22 @@ const template = `
                     <div class="deployments-activity-entry">
                         <div class="col-sm-6 col-md-7 text-left deployments-activity-left-column">
                             <div>
-                                <i class="xlr-application-icon"></i>
+                                <deployment-owner task-owner="activity.taskOwner" task-team="activity.taskTeam"></deployment-owner>
+                            </div>
+                            <div>
+                                <i class="xl-icon app-icon"></i>
                                 <span class="text-ellipsis" title="{{activity.applicationName}}">
                                     {{activity.applicationName}}
                                 </span>
                             </div>
                             <div>
-                                <i class="xlr-package-icon"></i>
+                                <i class="xl-icon package-icon"></i>
                                 <span class="text-ellipsis" title="{{activity.version}}">
                                     {{activity.version}}
                                 </span>
                             </div>
-                            <div>                            
-                                <img class="xlr-react-icon smaller" src="static/@project.version@/include/assets/environment.svg">
+                            <div>
+                                <i class="xl-icon environment-icon"></i>
                                 <span class="text-ellipsis" title="{{activity.environmentName}}">{{activity.environmentName}}</span>
                             </div>
                         </div>
@@ -32,20 +35,19 @@ const template = `
                         </div>
                     </div>
                 </div>
-            </div>                                    
+            </div>
         </report-content>
         <report-footer>
             <button ng-if="$ctrl.hasData()" class="show-deployment-activity btn-link" ng-click="$ctrl.showDetails(params)">
                 Show all activity
             </button>
         </report-footer>
-    </report-tile>        
+    </report-tile>
 `;
 
 const DEFAULT_PAGE_SIZE = 3;
 
 class BoaDeploymentsActivityTileController {
-
     static $inject = ['ReportLoader', 'Report', 'DeploymentTileService', 'ReportTileService', '$uibModal'];
 
     constructor(ReportLoader, Report, DeploymentTileService, ReportTileService, $uibModal) {
@@ -64,9 +66,9 @@ class BoaDeploymentsActivityTileController {
             params: {
                 deploymentState: filterByState,
                 pageSize: this.tile.sizeY * DEFAULT_PAGE_SIZE,
-                offset: 0
-            }
-        }).then(resp => {
+                offset: 0,
+            },
+        }).then((resp) => {
             this.deploymentsActivity = resp.data.data;
             this.loader.endLoading();
             this.loader.loaded(!!this.deploymentsActivity.length);
@@ -74,10 +76,7 @@ class BoaDeploymentsActivityTileController {
     }
 
     hasData() {
-        return this.report.isConfigured()
-            && !this.report.loading()
-            && !this.report.hasError()
-            && !this.report.isEmpty();
+        return this.report.isConfigured() && !this.report.loading() && !this.report.hasError() && !this.report.isEmpty();
     }
 
     showDetails() {
@@ -89,8 +88,8 @@ class BoaDeploymentsActivityTileController {
                     timeFrame: dateFilter.timeFrame,
                     dateFrom: dateFilter.from,
                     dateTo: dateFilter.to,
-                    tile: this.tile
-                }
+                    tile: this.tile,
+                },
             },
             windowClass: 'deployment-dialog',
         });
@@ -100,8 +99,8 @@ class BoaDeploymentsActivityTileController {
 export const boaDeploymentsActivityTileComponent = {
     bindings: {
         tile: '<',
-        parent: '<'
+        parent: '<',
     },
     controller: BoaDeploymentsActivityTileController,
-    template
+    template,
 };
