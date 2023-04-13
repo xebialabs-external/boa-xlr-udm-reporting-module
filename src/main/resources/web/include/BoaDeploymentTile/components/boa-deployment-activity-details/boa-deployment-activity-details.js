@@ -63,7 +63,8 @@ const template = `
                                                     class="deployment-task-icon"
                                                     task-type="$ctrl.getTaskType(deployment)"
                                                     task-owner="deployment.taskOwner"
-                                                    custom-icon-location="deployment.customIconLocation">
+                                                    custom-icon-location="deployment.customIconLocation"
+                                                    custom-icon-class="deployment.customIconClass">
                                                 </task-icon>
                                             <deployment-state state-value="deployment.state"></deployment-state>
                                         </span>
@@ -76,24 +77,24 @@ const template = `
                                         </span>
                                     </td>
                                     <td class="col-sm-2">
-                                        <span class="mlm mrm" title="{{::deployment.applicationName}}">
+                                        <span class="table-deployment-data" title="{{::deployment.applicationName}}">
                                             <i class="xl-icon app-icon"></i> {{::deployment.applicationName}}
                                         </span>
                                     </td>
                                     <td class="col-sm-1">
-                                        <span class="mrm mlm" title="{{::deployment.version}}">
+                                        <span class="table-deployment-data" title="{{::deployment.version}}">
                                             <i class="xl-icon package-icon"></i> {{::deployment.version}}
                                         </span>
                                     </td>
                                     <td class="col-sm-2">
-                                        <span class="mrm mlm" title="{{::deployment.environmentName}}">
+                                        <span class="table-deployment-data" title="{{::deployment.environmentName}}">
                                           <i class="xl-icon environment-icon"></i>
                                             {{::deployment.environmentName}}
                                         </span>
                                     </td>
                                     <td class="col-sm-2">
-                                        <span class="mlm">
-                                            <deployment-date change-date="deployment.changeDate" full-date="true" class="mlm"></deployment-date>
+                                        <span class="table-deployment-data">
+                                            <deployment-date change-date="deployment.changeDate" full-date="true"></deployment-date>
                                         </span>
                                     </td>
                                 </tr>
