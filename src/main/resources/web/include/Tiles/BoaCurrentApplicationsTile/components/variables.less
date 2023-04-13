@@ -1,67 +1,70 @@
 // PRIMARY COLORS
-@blue: #0099CC;
-@yellow: #FCD866;
-@green: #08B153;
-@red: #D94C3D;
-@orange: #FD8D10;
-@purple: #991C71;
+@blue: var(--dot-color-b500); // #3d6c9e
+@green: var(--dot-color-g500); // #498500
+@red: var(--dot-color-r500); // #d61f21
+@orange: var(--dot-color-o500); // #ff9e49
+@purple: var(--dot-color-p500); // #991c71
+@yellow: var(--dot-color-y500); // #eec511
 
 // SECONDARY COLORS
-@xldblue: #14B0E4;
-@lightblue: #5FCBF4;
-@darkblue: #4C6C87;
+@xldblue: var(--dot-color-b500); // #3d6c9e
+@lightblue: var(--dot-color-b400); // #5a82ad
+@darkblue: var(--dot-color-b700); // #2f598c
+@lightgreen: var(--dot-color-g50); // #e9f0e0
 
 // SHADES OF GRAY
-@black: #333333;
-@antracite: #495561;
-@gray: #999999;
-@lightgray: #D5D5D5;
-@background: #F0F0F0;
-@silver: #F9F9F9;
-@white: #FFFFFF;
+@black: var(--dot-color-n700); //  #3b485c
+@antracite: var(--dot-color-n700); //  #3b485c
+@gray: var(--dot-color-n400); // #667385
+@lightgray: var(--dot-color-n300); // #a4acb6
+@background: var(--dot-color-n50); // #f3f5f6
+@silver: var(--dot-color-n50); // #f3f5f6
+@white: var(--dot-color-n0); // #ffffff
+
+@dividerColor: rgba(0, 0, 0, 0.12);
 
 // Semantic COLORS --------------------------------------------------------
 @oddRowColor: @white;
 @evenRowColor: @silver;
 
-@greyHoverColor: fade(@antracite, 60);
+@greenOddRowColor: @green;
+@greenEvenRowColor: var(--dot-color-g700);
 
-@hoverColor: fade(@blue, 15);            // #D9F0F8
-@selectedColor: fade(@blue, 25);         // #BFE5F2
-@highlightColor: fade(@green, 20);       // #CDEFDC
-@hoverAndSelectedColor: #8fcee5;
+@greyHoverColor: var(--dot-color-n900_70);
+@tooltipColor: var(--dot-color-n700_90);
+@dotHoverColor: rgba(0, 0, 0, 0.04);
 
-@successBackground: #CDEFDC;             // fade(@green, 20);
-@successHover: fade(@green, 25);         // #F6D2CE
+@hoverColor: var(--dot-color-n50);
+@greenHoverColor: var(--dot-color-g700);
+@blueHoverColor: var(--dot-color-b50);
+@selectedColor: var(--dot-color-n100);
 
-@warningBackground: #FFE8CF;             // fade(@orange, 20);
-@warningHover: fade(@orange, 25);        // #FFE2C3
-
-@errorBackground: #F8DBD8;               // fade(@red, 20);
-@errorHover: fade(@red, 25);             // #C1EBD4
+@infoBackground: var(--dot-color-b100);
+@successBackground: var(--dot-color-g100);
+@warningBackground: var(--dot-color-o100);
+@errorBackground: var(--dot-color-r100);
 
 // OLD COLORS
 
-@pageHeaderHeight: 50px;
-@pageHeaderTopPadding: 5px;
-@pageHeaderBottomPadding: 5px;
+@pageHeaderHeight: 60px;
+@pageHeaderShadowHeight: 6px;
+@pageHeaderTopPadding: 15px;
+@pageHeaderBottomPadding: 11px;
 @pageHeaderRightPadding: 15px;
 @pageHeaderLeftPadding: 15px;
 @mainPageBorder: 0;
 
-// Buttons
-@buttonColor: @white;
-@buttonTextColor: @black;
-@buttonWhiteBackgroundHoverColor: @background;
-@buttonGrayBackgroundHoverColor: @lightgray;
+@basePadding: 8px;
 
-@disabledButtonColor: transparent;
+// Buttons
+@disabledButtonColor: @background;
 @disabledButtonBorderColor: @lightgray;
 @disabledButtonTextColor: @lightgray;
+@disabledTransparent: #3b485c4d; // --dot-color-n700 30%
 
 @primaryButtonColor: @blue;
 @primaryButtonTextColor: @white;
-@primaryButtonHoverColor: @lightblue;
+@primaryButtonHoverColor: var(--dot-color-b700);
 
 @buttonHeight: 28px;
 @buttonWidth: 90px;
@@ -74,9 +77,7 @@
 @createReleaseTaskColor: @green;
 
 @flagAttentionNeededColor: @orange;
-@flagAttentionNeededBackgroundColor: @silver;
 @flagAtRiskColor: @red;
-@flagAtRiskBackgroundColor: @silver;
 @flagInactiveColor: @gray;
 @delayedColor: @antracite;
 @delayedBackgroundColor: @background;
@@ -98,7 +99,7 @@
 @phasePurpleColor: @purple;
 @taskBorderColor: @lightgray;
 
-@labelWidth:90px;
+@labelWidth: 90px;
 
 @dropTargetColor: @silver;
 @doneBackgroundColor: @background;
@@ -111,9 +112,10 @@
 
 // Inputs
 @borderRadius: 5px;
+@borderColor: @lightgray;
 
 @x-large: 18px;
 @larger: 16px;
 @large: 14px;
-@medium: 12px;
-@small: 10px;
+@medium: 13px;
+@small: 11px;

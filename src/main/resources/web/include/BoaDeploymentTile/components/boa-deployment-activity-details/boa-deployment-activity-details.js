@@ -1,18 +1,18 @@
-import {DEPLOYMENT_STATE, DEPLOYMENT_STATE_ALL} from '../../services/boa-deployment-tile-constants';
+import { DEPLOYMENT_STATE, DEPLOYMENT_STATE_ALL } from '../../services/boa-deployment-tile-constants';
 import './boa-deployment-activity-details.less';
 
 const template = `
     <div class="modal-header">
         <h5 class="modal-title pull-left deployments-activity-details-title">
-            Activity in the <xlr-tile-date-range-label
+            Activity in the <xlr-date-range-label
                     class="xlr-tile-date-range-label"
                     time-frame="$ctrl.resolve.data.timeFrame"
                     from="$ctrl.resolve.data.dateFrom"
                     to="$ctrl.resolve.data.dateTo">
-            </xlr-tile-date-range-label>
+            </xlr-date-range-label>
         </h5>
-        <button type="button" class="close pull-right" ng-click="$ctrl.close()"><i class="glyphicon glyphicon-remove"/></button>
-        <div class="clearfix" />
+        <button type="button" class="close pull-right" ng-click="$ctrl.close()"><i class="xl-icon close-icon"></i></button>
+        <div class="clearfix"></div>
     </div>
     <div class="modal-body deployments-activity-details-body">
         <div>
@@ -77,17 +77,17 @@ const template = `
                                     </td>
                                     <td class="col-sm-2">
                                         <span class="mlm mrm" title="{{::deployment.applicationName}}">
-                                            <i class="xlr-application-icon"></i> {{::deployment.applicationName}}
+                                            <i class="xl-icon app-icon"></i> {{::deployment.applicationName}}
                                         </span>
                                     </td>
                                     <td class="col-sm-1">
                                         <span class="mrm mlm" title="{{::deployment.version}}">
-                                            <i class="xlr-package-icon"></i> {{::deployment.version}}
+                                            <i class="xl-icon package-icon"></i> {{::deployment.version}}
                                         </span>
                                     </td>
                                     <td class="col-sm-2">
                                         <span class="mrm mlm" title="{{::deployment.environmentName}}">
-                                          <img class="xlr-react-icon smaller" src="static/@project.version@/include/assets/environment.svg">
+                                          <i class="xl-icon environment-icon"></i>
                                             {{::deployment.environmentName}}
                                         </span>
                                     </td>
@@ -109,7 +109,6 @@ const template = `
 const ITEMS_PER_PAGE = 8;
 
 class BoaDeploymentActivityDetailsController {
-
     static $inject = ['BoaDeploymentTileService', 'ViewStorage', 'Ids'];
 
     constructor(DeploymentTileService, ViewStorage, Ids) {
@@ -147,8 +146,8 @@ class BoaDeploymentActivityDetailsController {
                 params: {
                     deploymentState: this.selectedState === DEPLOYMENT_STATE_ALL ? '' : this.selectedState,
                     pageSize: ITEMS_PER_PAGE,
-                    offset: this.currentPage * ITEMS_PER_PAGE
-                }
+                    offset: this.currentPage * ITEMS_PER_PAGE,
+                },
             })
             .then((resp) => {
                 this.hasData = resp.data.data && resp.data.data.length;

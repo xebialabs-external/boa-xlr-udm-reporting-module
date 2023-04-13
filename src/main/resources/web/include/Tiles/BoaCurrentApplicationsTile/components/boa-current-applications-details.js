@@ -3,15 +3,15 @@ import './boa-current-applications-details.less';
 const template = `
     <div class="modal-header">
         <h5 class="modal-title pull-left boa-current-applications-details-title">
-            Deployed applications in the <xlr-tile-date-range-label
+            Deployed applications in the <xlr-date-range-label
                     class="xlr-tile-date-range-label"
                     time-frame="$ctrl.resolve.data.timeFrame"
                     from="$ctrl.resolve.data.dateFrom"
                     to="$ctrl.resolve.data.dateTo">
-            </xlr-tile-date-range-label>
+            </xlr-date-range-label>
         </h5>
-        <button type="button" class="close pull-right" ng-click="$ctrl.close()"><i class="glyphicon glyphicon-remove"/></button>
-        <div class="clearfix" />
+        <button type="button" class="close pull-right" ng-click="$ctrl.close()"><i class="xl-icon close-icon"></i></button>
+        <div class="clearfix"></div>
     </div>
     <div class="modal-body boa-current-applications-details-body">
         <div class="filters" data-ng-if="!$ctrl.isLoading">
@@ -50,11 +50,11 @@ const template = `
                     <tbody>
                         <tr ng-repeat="deployment in value">
                             <td>
-                                <i class="xlr-application-icon"></i>
+                                <i class="xl-icon application-icon"></i>
                                 <span class="mrm">{{::deployment.applicationName}}</span>
                             </td>
                             <td>
-                                <i class="xlr-package-icon"></i>
+                                <i class="xl-icon package-icon"></i>
                                 <span class="mrm">{{::deployment.version}}</span>
                             </td>
                             <td>

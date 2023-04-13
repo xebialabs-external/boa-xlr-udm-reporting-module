@@ -1,5 +1,5 @@
-@import "./variables";
-@import "./common-functions";
+@import "../../styles/variables";
+@import "../../styles/common-functions";
 
 .deployments-activity-tile-container {
   font-weight: normal;
@@ -7,16 +7,17 @@
   .loaded.card-content {
     overflow-y: auto;
     overflow-x: hidden;
-    height: ~"calc(100% - 50px)";
+        height: ~'calc(100% - 50px)';
   }
 
-  .card-title, .card-footer {
+    .card-title,
+    .card-footer {
     background: @white;
     z-index: 1;
   }
 
   .report-tile {
-    width: ~"calc(100% + 10px)";
+        width: ~'calc(100% + 10px)';
   }
 
   .deployments-activity-right-column {
@@ -44,7 +45,8 @@
         border: none;
     }
 
-    &.not-fully-visible-item, &.not-visible-item {
+        &.not-fully-visible-item,
+        &.not-visible-item {
       display: none;
       visibility: hidden;
     }
@@ -53,11 +55,9 @@
   .manual-icon {
     padding-left: 1px;
   }
-
 }
 
 .deployments-activity-tile {
-
   .labels .label {
     width: 90px;
   }

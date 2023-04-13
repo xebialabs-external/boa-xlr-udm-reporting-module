@@ -66,9 +66,9 @@ class BoaDeploymentsActivityTileController {
             params: {
                 deploymentState: filterByState,
                 pageSize: this.tile.sizeY * DEFAULT_PAGE_SIZE,
-                offset: 0
-            }
-        }).then(resp => {
+                offset: 0,
+            },
+        }).then((resp) => {
             this.deploymentsActivity = resp.data.data;
             this.loader.endLoading();
             this.loader.loaded(!!this.deploymentsActivity.length);
